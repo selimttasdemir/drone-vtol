@@ -2,8 +2,8 @@
 from pymavlink import mavutil
 import serial , time
 
-adres = "udpin:localhost:14550"
-# adres = serial.Serial('/dev/ttyACM0')
+# adres = "udpin:localhost:14550"
+adres = serial.Serial('/dev/ttyACM0')
 # adres = "/dev/ttyTHS1:115200"
 
 VTOLbrkt = mavutil.mavlink_connection(adres, baud=115200, autoreconnect=True)

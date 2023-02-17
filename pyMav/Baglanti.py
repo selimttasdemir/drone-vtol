@@ -14,11 +14,13 @@ mesajların filtrelenmesi işlemleri yapılmıştır
 from pymavlink import mavutil
 import serial
 
-adres = "udpin:localhost:14550"
-# adres = serial.Serial('/dev/ttyACM0')
+baudrate = 115200
+
+# adres = "udpin:localhost:14550"
+adres = serial.Serial('/dev/ttyACM0', baudrate, timeout=1)
 # adres = "/dev/ttyTHS1:115200"
 
-baglanti = mavutil.mavlink_connection(adres, baud=115200, autoreconnect=True)
+baglanti = mavutil.mavlink_connection(adres, source_system=1)
 baglanti.wait_heartbeat()
 print("Baglanti kuruldu")
 
