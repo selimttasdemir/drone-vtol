@@ -2,11 +2,21 @@
 from pymavlink import mavutil
 import serial , time
 
+baudrate = 115200
+
 # adres = "udpin:localhost:14550"
-adres = serial.Serial('/dev/ttyACM0')
+# adres = serial.Serial('COM15', baudrate)
 # adres = "/dev/ttyTHS1:115200"
 
-VTOLbrkt = mavutil.mavlink_connection(adres, baud=115200, autoreconnect=True)
+# Specify only the address when creating the Serial object
+adres = serial.Serial('/dev/ttyACM2', baudrate)
+
+# Connect to the mavlink device using the address and baudrate separately
+VTOLbrkt = mavutil.mavlink_connection(
+    device=adres.name,
+    baud=baudrate
+)
+
 VTOLbrkt.wait_heartbeat()
 print("Baglanti kuruldu")
 
